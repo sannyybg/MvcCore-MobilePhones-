@@ -21,8 +21,6 @@ namespace MobilePhones.Controllers
         // GET: MobilePhones
         public async Task<IActionResult> Index()
         {
-
-            ViewBag.MobilePhoneManufacturer = new SelectList(_context.MobilePhones, "MobilePhoneId", "Manufacturer", 1);
             return View(await _context.MobilePhones.ToListAsync());
         }
 
