@@ -1,0 +1,164 @@
+﻿@model IEnumerable<MobilePhones.Models.MobilePhone>
+
+@{
+    ViewData["Title"] = "Index";
+    var manufacturers = (SelectList)ViewBag.MobilePhoneId;
+
+}
+
+<h1>eMobile</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Height)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Width)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HardDrive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ram)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OperatingSystem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Processor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhotoUrl)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HardDrive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ram)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperatingSystem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Processor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhotoUrl)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MobilePhoneId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MobilePhoneId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MobilePhoneId">Delete</a>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>*@
+
+
+<div class="row">
+    <div class="col-md-3" style="height:100%">
+        <form action="/MobilePhones/Search">
+            <div class="form-group">
+                <input class="form-control" type="text" name="parameter" placeholder="დასახელება" />
+            </div>
+
+            @*dropdown without model*@
+            <div class="form-group">
+                <select class="form-control" name="manufacturer" placeholder="მწარმოებელი">
+                    <option value="apple">Apple</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="huawei">Huawei</option>
+                    <option value="sony">Sony</option>
+                    <option value="htc">HTC</option>
+                    <option value="xiaomi">Xiaomi</option>
+                    <option value="motorola">Motorola</option>
+                </select>
+            </div>
+            <div class="row form-group">
+                <div class="col">
+                    <input type="number" name="minprice" class="form-control" placeholder="ფასი დან">
+                </div>
+                <div class="col">
+                    <input type="number" name="maxprice" class="form-control" placeholder="ფასი მდე">
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="btn-success" type="submit" value="ძებნა" />
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-9">
+        @foreach (var phone in Model)
+        {
+        
+        <div class="col-md-3" style="display:inline-block; margin-bottom:20px; margin-left:1em">
+            <center>
+                <a href="/MobilePhones/Details/@phone.MobilePhoneId" style="text-decoration:none">
+                    <div>
+                        <img src="@phone.PhotoUrl" alt="@phone.Name" style="border: 1px solid black;  width:200px; height:200px" />
+                        <br>
+
+                        <span>@phone.Name</span>
+                        <br>
+                        <button class="btn-success" style="font-family: 'Arial Rounded MT';">ყიდვა @phone.Price  $</button>
+                    </div>
+                </a>
+            </center>
+        </div>
+        
+        }
+    </div>
+
+
+
+
+
+
+</div>
+
+
+    
+
